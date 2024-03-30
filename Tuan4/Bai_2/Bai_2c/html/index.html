@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <form action="#">
+                    <div class="form-group">
+                        <label for="Username">Username*</label>
+                        <input type="text" class="form-control mb-3" id="Username" placeholder="Choose your username">
+                        <label for="Email">E-mail*</label>
+                        <input type="email" class="form-control mb-3" id="Email" placeholder="Your current email address">
+                        <label for="Pass">Password*</label>
+                        <input type="password" class="form-control mb-3" id="Pass" placeholder="Create a password">
+                        <label for="Fullname">Full name*</label>
+                        <input type="text" class="form-control mb-3" id="Fullname" placeholder="Your Frist name and Last name">
+                        <label for="#">Gender*</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="Male" value="male">
+                        <label class="form-check-label" for="Male">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="Female" value="female">
+                        <label class="form-check-label" for="Female">Female</label>
+                    </div>
+                </form>
+            </div>
+            <div class="col-6">
+                <form action="#">
+                    <div class="form-group">
+                        <label for="Company">Company name*</label>
+                        <input type="text" class="form-control mb-3" id="Company" placeholder="your company name">
+                        <label for="Category">Category</label>
+                        <input type="text" class="form-control mb-3" id="Category" placeholder="skills catagory">
+                        <label for="Contact">Contact number*</label>
+                        <input type="text" class="form-control mb-3" id="Contact" placeholder="provide your number">
+                        <label for="Location">Your Location*</label>
+                        <input type="text" class="form-control mb-3" id="Location" placeholder="Your Pincode and City">
+                    </div>
+                    <div class="form-check mb-5">
+                        <input type="checkbox" class="form-check-input" id="Agree">
+                        <label for="Agree">Agree with the terms and conditions</label>
+                    </div>
+                    <button type="submit" class="btn btn-info">Signup</button>
+                    <label for="">or</label>
+                    <button type="submit" class="btn btn-primary">Sign Up with Facebook</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
