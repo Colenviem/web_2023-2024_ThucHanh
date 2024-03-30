@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <style>
+        .btn{
+            border: 2px solid #000;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6 border" id="main">
+                <form>
+                    <h1 class="text-center">Form định dạng</h1>
+                    <div class="form-inline">
+                        <label for="name">Họ và tên</label>
+                        <input type="text" class="form-control ml-2" id="name">
+                    </div>
+                    <label>Chọn</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="backgroundRadio" value="option1">
+                        <label class="form-check-label" for="backgroundRadio">Backgroud</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="fontRadio" value="option1">
+                        <label class="form-check-label" for="fontRadio">Font</label>
+                    </div>
+                    <div class="form-inline mb-2">
+                        <label for="exampleFormControlSelect1">Chọn màu</label>
+                        <select class="form-control ml-2" id="exampleFormControlSelect1" style="width: 150px;">
+                          <option>Chọn màu</option>
+                          <option value="red">Màu đỏ</option>
+                          <option value="green">Màu xanh</option>
+                          <option value="yellow">Màu vàng</option>
+                          <option value="orange">Màu cam</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn" onclick="changeColor()">Đổi màu</button>
+                    <button type="button" class="btn" onclick="resetColor()">Cancel</button>
+                    <p>you can direct link the hyperlink with the file if you know the address but this is limited by the browser. eg. if pdf reader is installed on the client then the pdf will not be downloaded instead it will be shown. A good solution would be to have a seperate page for downloading files. just pass filename in querystring and in the pageload event just outpit the file in response stream. This way you can use url say dwnld.aspx? filename.ext</p>
+                </form>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+    <script>
+        var originalBackgroundColor = document.getElementById("main").style.backgroundColor;
+        var originalFontColor = document.body.style.color;
+
+        function changeColor() {
+            // Lấy giá trị của select box
+            var selectedColor = document.getElementById("exampleFormControlSelect1").value;
+        
+            // Kiểm tra radio button được chọn
+            var radioBackground = document.getElementById("backgroundRadio").checked;
+            var radioFont = document.getElementById("fontRadio").checked;
+        
+            // Nếu radio "Background" được chọn, thay đổi màu nền
+            if (radioBackground) {
+                document.getElementById("main").style.backgroundColor = selectedColor;
+            }
+            
+            // Nếu radio "Font" được chọn, thay đổi màu chữ
+            if (radioFont) {
+                document.body.style.color = selectedColor;
+                document.getElementById("name").style.color = selectedColor;
+            }
+        }
+
+        function resetColor() {
+        // Đặt lại màu nền và màu chữ ban đầu
+            document.getElementById("main").style.backgroundColor = originalBackgroundColor;
+            document.body.style.color = originalFontColor;
+        }
+    </script>
+</body>
+</html>

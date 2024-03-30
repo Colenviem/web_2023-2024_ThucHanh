@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <style>
+       .text-center{
+            color: rgb(186, 123, 133);
+            font-size: 34px;
+            font-weight: 600;
+        }
+        table,th,td{
+            border: 1px solid #000;
+            width: 360px;
+        }
+        tr{
+            height: 40px;
+        }
+        .form-control{
+            width: 360px;
+            height: 36px;
+            border: 1px solid #000;
+            margin: 10px;
+        }
+        table{
+            background-color: #a39d9d;
+        }
+        td{
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2" class="text-center p-0">Thông tin đăng ký</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                <tr>
+                    <td class="align-middle" style="width: 100px;">UserName</td>
+                    <td id="name"></td>
+                </tr>
+                <tr>
+                    <td class="align-middle">PassWord</td>
+                    <td id="pass"></td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </form>
+    <script>
+        
+        document.getElementById("name").innerHTML = localStorage.getItem("name");
+        document.getElementById("pass").innerHTML = localStorage.getItem("pass");
+    
+    </script>
+</body>
+</html>

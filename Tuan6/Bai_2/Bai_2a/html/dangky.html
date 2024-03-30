@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <style>
+        .text-center{
+            color: rgb(186, 123, 133);
+            font-size: 34px;
+            font-weight: 600;
+        }
+        table,th,td{
+            border: 1px solid #000;
+            width: 360px;
+        }
+        tr{
+            height: 40px;
+        }
+        .form-control{
+            width: 360px;
+            height: 36px;
+            border: 1px solid #000;
+            margin: 10px;
+        }
+        table{
+            background-color: #a39d9d;
+        }
+        td{
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2" class="text-center p-0 text-uppercase">Thông tin đăng ký</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                <tr>
+                    <td class="align-middle">Họ tên</td>
+                    <td>
+                        <div class="form-group my-auto">
+                            <input type="text" id="name">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="align-middle">Mật khẩu</td>
+                    <td>
+                        <div class="form-group my-auto">
+                            <input type="password" id="pass">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="align-middle">
+                        <button type="button" onclick="nhap()">Nhập</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <script>
+        function nhap() {
+            let name = document.getElementById("name").value;
+            let pass = document.getElementById("pass").value;
+            localStorage.setItem("name", name);
+            localStorage.setItem("pass", pass);
+            window.open("dangnhap.html");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <style>
+        .col-8 .form-inline:nth-child(5){
+            margin-left: 90px;
+        }
+        .btn{
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+           <div class="col-2"></div>
+           <div class="col-8 border d-flex justify-content-center">
+                <form>
+                    <h1 class="text-center">Phép tính cơ bản</h1>
+                    <div class="form-inline my-2">
+                        <label for="so_1">Nhập phép tính số 1</label>
+                        <input type="text" class="form-control ml-2" id="so_1" onblur='kiemTra("so_1","so_2","check_1");'>
+                        <span class="text-danger" id="check_1">(*)</span>
+                        
+                    </div>
+                    <div class="form-inline my-2">
+                        <label for="so_2">Nhập phép tính số 2</label>
+                        <input type="text" class="form-control ml-2" id="so_2" onblur='kiemTra("so_2","kq","check_2");'>
+                        <span class="text-danger" id="check_2">(*)</span>
+                    </div>
+                    <div class="form-inline my-2">
+                        <button class="btn btn-outline-dark ml-2" type="button" onclick="phepTinh('cong')">Cộng</button>
+                        <button class="btn btn-outline-dark ml-2" type="button" onclick="phepTinh('tru')">Trừ</button>
+                        <button class="btn btn-outline-dark ml-2" type="button" onclick="phepTinh('chia')">Chia</button>
+                        <button class="btn btn-outline-dark ml-2" type="button" onclick="phepTinh('chiaDu')">Chia dư</button>
+                    </div>
+                    <div class="form-inline my-2 mb-3">
+                        <label for="kq">Kết quả</label>
+                        <input type="text" class="form-control ml-2" id="kq">
+                    </div>
+                </form>
+           </div>
+           <div class="col-2"></div>
+        </div>
+    </div>
+
+    <script>
+        function kiemTra(so_1, so_2, text) {
+    let pat = /^\d+$/;
+    let check =  document.getElementById(so_1).value;
+    if (!pat.test(check)) {
+        document.getElementById(so_2).disabled = true;
+        document.getElementById(text).innerHTML = "Error: Input must be a number";
+    } else {
+        document.getElementById(so_2).disabled = false;
+        document.getElementById(text).innerHTML = "(*)";
+    }
+}
+
+
+        function phepTinh(choose){
+            let a = parseFloat(document.getElementById("so_1").value);
+            let b = parseFloat(document.getElementById("so_2").value);
+            let kq;
+
+            switch (choose) {
+                case "cong":
+                    kq = a + b;
+                    break;
+                case "tru":
+                    kq = a - b;
+                    break;
+                case "chia":
+                    kq = a / b;
+                    break;
+                case "chiaDu":
+                    kq = a % b;
+                    break;
+                default:
+                    kq = "Invalid operation";
+                    break;
+            }
+
+            document.getElementById("kq").value = kq;
+        }
+
+       
+
+    </script>
+</body>
+</html>
