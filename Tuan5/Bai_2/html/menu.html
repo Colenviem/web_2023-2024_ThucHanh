@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>food</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../font/fontawesome-webfont.ttf">
+    <link rel="stylesheet" href="../font/fontawesome-webfont.woff">
+    <link rel="stylesheet" href="../font/fontawesome-webfont.woff2">
+    <style>
+        nav{
+        background-image: linear-gradient(to right, rgba(0,0,0),rgba(0, 0, 0, 0.7));
+        padding-left: 220px!important;
+        padding-right: 220px!important;
+        }
+        nav a{
+            color: white;
+        }
+        nav ul{
+            margin-left: 340px!important;
+        }
+        nav li a:hover{
+            color: yellow;
+        }
+        nav .btn{
+            color: white;
+            border-radius: 20px;
+            background-color: orange;
+        }
+        nav span{
+            font-size: 24px;
+            font-family: 'Buffalo Handwritten', cursive;
+        }
+        .filters_menu {
+            padding: 0;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            list-style-type: none;
+            margin: 45px 0 20px 0;
+        }
+        .filters_menu li {
+            padding: 7px 25px;
+            cursor: pointer;
+            border-radius: 25px;
+        }
+
+        .filters_menu li.active {
+            background-color: #222831;
+            color: #ffffff;
+        }
+        .heading_container {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                    flex-direction: column;
+            -webkit-box-align: start;
+                -ms-flex-align: start;
+                    align-items: flex-start;
+        }
+
+        .heading_container h2 {
+            position: relative;
+            margin-bottom: 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        .heading_container.heading_center {
+            -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        text-align: center;
+        }
+        .box {
+            position: relative;
+            margin-top: 25px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            color: #ffffff;
+            border-radius: 15px;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #f1f2f3 25px, #222831 25px);
+        }
+
+        .box .img-box {
+            background: #f1f2f3;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            height: 215px;
+            border-radius: 0 0 0 45px;
+            margin: -1px;
+            padding: 25px;
+        }
+
+        .box .img-box img {
+            max-width: 100%;
+            max-height: 145px;
+            -webkit-transition: all .2s;
+            transition: all .2s;
+        }
+
+        .box .detail-box{
+            padding: 25px;
+        }
+        .box .detail-box h5 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .box .detail-box h6 {
+            font-family: 'Dancing Script', cursive;
+            margin: 10px 0;
+        }
+
+        .box .detail-box h6 span {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        .form-group input{
+            border-radius: 15px;
+        }
+        .form-group input:focus{
+            border-color: orange;
+            box-shadow: 0 0 0 0.2rem orange;
+        }
+        .modal-title{
+            color: rgb(235, 158, 15);
+            font-family: 'Dancing Script', cursive;
+        }
+        .modal-footer .btn{
+            border-radius: 0px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg align-middle">
+        <span class="text-white">Feane</span>
+        <ul class="navbar-nav text-uppercase mr-auto">
+            <li class="nav-item"><a href="../html/home.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="../html/menu.html" class="nav-link">Menu</a></li>
+            <li class="nav-item"><a href="../html/about.html" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="../html/book.html" class="nav-link">Book table</a></li>
+        </ul>
+        <div class="icons text-white">
+            <i class='bx bxs-bell ml-lg-3'></i>
+            <i class='bx bxs-cart ml-lg-3'></i>
+            <i class='bx bx-search ml-lg-3'></i>
+        </div>
+        <button type="button" class="btn ml-4" data-toggle="modal" data-target="#myModal">Order Online</button>
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+            <div class="modal-content">
+            
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">Order</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="Telephone">Telephone</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="Final">Final</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" value="" >Check me
+                            </label>
+                          </div>
+                    </form>
+                </div>
+                
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">Create</button>
+                <button type="button" class="btn" data-dismiss="modal">Close</button>
+                </div>
+                
+            </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="heading_container heading_center mt-5">
+            <h2>
+              Our Menu
+            </h2>
+          </div>
+        <ul class="filters_menu">
+            <li class="active" data-filter="*">All</li>
+            <li data-filter=".burger">Burger</li>
+            <li data-filter=".pizza">Pizza</li>
+            <li data-filter=".pasta">Pasta</li>
+            <li data-filter=".fries">Fries</li>
+        </ul>
+        <div class="filters-content">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="box">
+                        <div>
+                          <div class="img-box">
+                            <img src="../img/f1.png" alt="">
+                          </div>
+                          <div class="detail-box">
+                            <h5>
+                              Delicious Pizza
+                            </h5>
+                            <p>
+                              Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
+                            </p>
+                            <div class="options">
+                            <h6>$20</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="box">
+                        <div>
+                          <div class="img-box">
+                            <img src="../img/f2.png" alt="">
+                          </div>
+                          <div class="detail-box">
+                            <h5>
+                              Delicious Burger
+                            </h5>
+                            <p>
+                              Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
+                            </p>
+                            <div class="options">
+                              <h6>
+                                $15
+                              </h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="box">
+                        <div>
+                          <div class="img-box">
+                            <img src="../img/f3.png" alt="">
+                          </div>
+                          <div class="detail-box">
+                            <h5>
+                              Delicious Pizza
+                            </h5>
+                            <p>
+                              Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
+                            </p>
+                            <div class="options">
+                              <h6>
+                                $17
+                              </h6>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

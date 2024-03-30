@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <style>
+        .navbar .btn{
+            border-radius: 20px;
+            width: 200px;
+        }
+        .container-fluid{
+            background-image: linear-gradient(to right,#efb9f1,#bbccf8);
+        }
+        .col-lg-6 img{
+            width: 100%;
+            height: 100%;
+        }
+        .col-lg-6 .btn{
+            border-radius: 40px;
+            border: 2px solid black;
+            width: 200px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark text-uppercase">
+        <a href="#" class="navbar-brand" style="font-size: 16px;">Magazine template</a>
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item mx-3">
+                <a href="#" class="nav-link dropdown-toggle">Block demos 1</a>
+            </li>
+            <li class="nav-item mx-3">
+                <a href="#" class="nav-link dropdown-toggle">Block demos 2</a>
+            </li>
+            <li class="nav-item mx-3">
+                <a href="#" class="nav-link dropdown-toggle disabled">Site templates 1</a>
+            </li>
+            <li class="nav-item mx-3 dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Site templates 2</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">link</a>
+                </div>
+            </li>
+        </ul>
+        <button class="btn btn-primary">Download now!</button>
+    </nav>
+    <section class="container-fluid pt-4">
+        <div class="row mb-3">
+            <div class="col-lg-6">
+                <img src="../img/magazin.jpg" alt="maga">
+            </div>
+            <div class="col-lg-6 d-flex flex-column pl-5">
+                <h1 class="text-uppercase mb-5" style="font-size: 80px;">Autumn sale</h1>
+                <p class="mb-5" style="font-size: 30px;">Purchase summer issues! 50% OFF</p>
+                <button type="button" class="btn btn-outline-dark text-uppercase">order now</button>
+            </div>
+        </div>
+        <div class="row p-0">
+            <img src="../img/image.png" alt="img" width="100%" height="250px">
+        </div>
+    </section>
+</body>
+</html>

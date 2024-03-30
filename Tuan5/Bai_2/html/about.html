@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>food</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../font/fontawesome-webfont.ttf">
+    <link rel="stylesheet" href="../font/fontawesome-webfont.woff">
+    <link rel="stylesheet" href="../font/fontawesome-webfont.woff2">
+    <style>
+        nav{
+            background-image: linear-gradient(to right, rgba(0,0,0),rgba(0, 0, 0, 0.7));
+            padding-left: 220px!important;
+            padding-right: 220px!important;
+        }
+        nav a{
+            color: white;
+        }
+        nav ul{
+            margin-left: 340px!important;
+        }
+        nav li a:hover{
+            color: yellow;
+        }
+        nav .btn{
+            color: white;
+            border-radius: 20px;
+            background-color: orange;
+        }
+        nav span{
+            font-size: 24px;
+            font-family: 'Buffalo Handwritten', cursive;
+        }
+        .row img{
+            margin-top: 40px;
+            margin-bottom: 40px;
+            margin-left: 240px;
+            width: 470px;
+            height: 640px;
+        }
+        .row h1{
+            margin-top: 200px;
+            font-size: 50px;
+            font-family: 'Buffalo Handwritten', cursive;
+        }
+        .row p{
+            width: 570px;
+            word-spacing: 4px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            margin-top: 30px;
+        }
+        .row .btn{
+            background-color: orange;
+            border-radius: 20px;
+            width: 150px;
+            height: 45px;
+            color: #fff;
+        }
+        .form-group input{
+            border-radius: 15px;
+        }
+        .form-group input:focus{
+            border-color: orange;
+            box-shadow: 0 0 0 0.2rem orange;
+        }
+        .modal-title{
+            color: rgb(235, 158, 15);
+            font-family: 'Dancing Script', cursive;
+        }
+        .modal-footer .btn{
+            border-radius: 0px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg align-middle">
+        <span class="text-white">Feane</span>
+        <ul class="navbar-nav text-uppercase mr-auto">
+            <li class="nav-item"><a href="../html/home.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="../html/menu.html" class="nav-link">Menu</a></li>
+            <li class="nav-item"><a href="../html/about.html" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="../html/book.html" class="nav-link">Book table</a></li>
+        </ul>
+        <div class="icons text-white">
+            <i class='bx bxs-bell ml-lg-3'></i>
+            <i class='bx bxs-cart ml-lg-3'></i>
+            <i class='bx bx-search ml-lg-3'></i>
+        </div>
+        <button type="button" class="btn ml-4" data-toggle="modal" data-target="#myModal">Order Online</button>
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+            <div class="modal-content">
+            
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">Order</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="Telephone">Telephone</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="Final">Final</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" value="" >Check me
+                            </label>
+                          </div>
+                    </form>
+                </div>
+                
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">Create</button>
+                <button type="button" class="btn" data-dismiss="modal">Close</button>
+                </div>
+                
+            </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid bg-dark">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="../img/about-img.png" alt="">
+            </div>
+            <div class="col-lg-6 text-white align-middle">
+                <h1>We Are Feane</h1>
+                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All</p>
+                <button type="button" class="btn">Read More</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
