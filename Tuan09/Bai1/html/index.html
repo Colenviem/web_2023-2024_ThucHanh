@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <style>
+        [class*=col-] {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .row {
+            border: 1px solid #000;
+            border-top: none;
+        }
+        
+        form .row {
+            border: none;
+        }
+        
+        .modal-content {
+            width: 620px!important;
+        }
+        
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .table th {
+            border-top: none;
+        }
+        
+        .mauDo {
+            color: red;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            let stt = 1;
+            $("#btn_dangKy").click(function(e) {
+                e.preventDefault();
+                $("#myModal").modal();
+            });
+
+            function kiemTraHT(gt, loi) {
+                let kiemTra = /^([A-Z][a-z]\s)+([A-Z][a-z])$/;
+                if (!kiemTra.test(gt)) {
+                    $(loi).html("Họ tên không được bỏ trống, họ tên phải từ 2 từ trở lên, mỗi ký tự đầu phải viết hoa.");
+                    $(loi).addClass("mauDo");
+                    return false;
+                } else {
+                    $(loi).html("*");
+                    $(loi).removeClass("mauDo");
+                    return true;
+                }
+            }
+
+            $("#txtHT").blur(function(e) {
+                e.preventDefault();
+                let hoTen = $("#txtHT").val();
+                kiemTraHT(hoTen, "#tbHT");
+            });
+
+            function kiemTraSDT(gt, loi) {
+                let kiemTra = /^(\d{3})(-\d{6})$/;
+
+                if (!kiemTra.test(gt)) {
+                    $(loi).html("Phải theo định dạng sau: XXX - YYYYYY, trong đó X, Y là các ký tự số.");
+                    $(loi).addClass("mauDo");
+                    return false;
+                }
+                $(loi).html("*");
+                $(loi).removeClass("mauDo");
+                return true;
+            }
+
+            $("#txtSDT").blur(function(e) {
+                let soDienThoai = $("#txtSDT").val();
+                kiemTraSDT(soDienThoai, "#tbSDT");
+            });
+
+            function kiemTraNgaySinh(gt, loi) {
+                gt = new Date(gt);
+                let namNay = new Date();
+                let tuoi = namNay.getFullYear() - gt.getFullYear();
+                if (tuoi <= 15 || tuoi >= 18) {
+                    $(loi).html("Phải Ngày sinh hợp lệ khi tuổi trên 15 và dưới 18.");
+                    $(loi).addClass("mauDo");
+                    return false;
+                }
+                $(loi).html("*");
+                $(loi).removeClass("mauDo");
+                return true;
+            }
+            $("#txtNgaySinh").change(function(e) {
+                let namSinh = $("#txtNgaySinh").val();
+                kiemTraNgaySinh(namSinh, "#tbNgaySinh");
+            });
+
+            $("#listKH").change(function (e) { 
+                e.preventDefault();
+                let string = $(this).val();
+                let vt = string.indexOf(";");
+                let gia = string.substring(0,vt);
+                let khoaHoc = string.substring(vt+1,string.length);
+                $("#txtHP").val(gia);
+            });
+
+            function kiemTraFile(gt, loi) {
+                let kiemTra = /\.(jpg|png|gif)$/;
+                if (!kiemTra.test(gt)) {
+                    $(loi).html("Phải đại diện là các file hình .jpg, .png, .gif.");
+                    $(loi).addClass("mauDo");
+                    return false;
+                }
+                $(loi).html("*");
+                $(loi).removeClass("mauDo");
+                return true;
+            }
+
+            $("#txtAnh").change(function(e) {
+                e.preventDefault();
+                let fileName = $("#txtAnh").val(); // Lấy tên của tệp tin đã chọn
+                kiemTraFile(fileName, "#tbAnh");
+            });
+
+            $("#btn_luu").click(function (e) { 
+                e.preventDefault();
+                let hoTen = $("#txtHT").val();
+                let soDienThoai = $("#txtSDT").val();
+                let namSinh = $("#txtNgaySinh").val();
+                namSinh = new Date(namSinh);
+                let fileName = $("#txtAnh").val(); 
+                let gioiTinh = "Nam";
+                let diaChi = $("#txtDC").val();
+                let string = $("#listKH").val();
+                let vt = string.indexOf(";");
+                let gia = string.substring(0,vt);
+                let khoaHoc = string.substring(vt+1,string.length);
+                if(!kiemTraHT(hoTen,"#tbHT")){
+                    $("#txtHT").focus();
+                    return false;
+                }
+                if(!kiemTraSDT(soDienThoai,"#tbSDT")){
+                    $("#txtSDT").focus();
+                    return false;
+                }
+                if(!kiemTraNgaySinh(namSinh,"#tbNgaySinh")){
+                    $("#txtNgaySinh").focus();
+                    return false;
+                }
+                if(!kiemTraFile(fileName,"#tbAnh")){
+                    $("#txtAnh").focus();
+                    return false;
+                }
+                let them = "<tr><td>" + stt++ + "</td><td>" + hoTen + "</td><td>" + gioiTinh + "</td><td>" + soDienThoai + "</td><td>" + namSinh + "</td><td>" + diaChi + "</td><td>" + khoaHoc + "</td><td>" + gia + "</td></tr>"
+                $(".table").append(them);
+                $("#myModal").modal('hide');
+                return true;
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12" style="height: 200px;">
+                <img src="../img/website.png" alt="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-expand">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" id="btn_dangKy">Đăng ký</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p class="text-center text-uppercase" style="font-size: 24px;">List of members</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Họ và tên</th>
+                            <th>Giới tính</th>
+                            <th>Số điện thoại</th>
+                            <th>Ngày sinh</th>
+                            <th>Địa chỉ</th>
+                            <th>Khóa học</th>
+                            <th>Học phí</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title text-center text-uppercase" style="width: 100%;">
+                            Thông tin học viên
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form style="padding: 0 20px;">
+                            <div class="row justify-content-between mb-2">
+                                <div class="col-3">
+                                    <label for="txtHT" class="float-right">Họ và tên</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" id="txtHT" class="form-control">
+                                    <span id="tbHT">*</span>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between mb-2">
+                                <div class="col-3">
+                                    <label for="txtSDT" class="float-right">Số điện thoại</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" id="txtSDT" class="form-control">
+                                    <span id="tbSDT">*</span>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between mb-2">
+                                <div class="col-3">
+                                    <label for="txtNgaySinh" class="float-right">Ngày sinh</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="date" id="txtNgaySinh" class="form-control">
+                                    <span id="tbNgaySinh">*</span>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between mb-2">
+                                <div class="col-3">
+                                    <label for="txtDC" class="float-right">Địa chỉ</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" id="txtDC" class="form-control">
+                                    <span id="tbDC">*</span>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between mb-2">
+                                <div class="col-3">
+                                    <label for="listKH" class="float-right">Bạn muốn tham gia khóa học nào ?</label>
+                                </div>
+                                <div class="col-8">
+                                    <select id="listKH" class="form-control">
+                                        <option value="5000000;2 tuần">Khóa học 2 tuần</option>
+                                        <option value="8000000;4 tuần">Khóa học 4 tuần</option>
+                                        <option value="9000000;6 tuần">Khóa học 6 tuần</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between mb-4">
+                                <div class="col-3">
+                                    <label for="txtHP" class="float-right">Học phí</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" id="txtHP" class="form-control" disabled>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between mb-2">
+                                <div class="col-3">
+                                    <label for="txtAnh" class="float-right">Ảnh đại diện</label>
+                                </div>
+                                <div class="col-8">
+                                    <div class="form-control">
+                                        <input type="file" id="txtAnh">
+                                    </div>
+                                    <span id="tbAnh">*</span>
+                                </div>
+                            </div>
+                        </form>
+                        <button type="button" class="btn btn-success" id="btn_luu" style="width: 100%;">Lưu</button>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
