@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <script src="../js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <style>
+        .col-3 tr{
+            color: rgb(2, 119, 245);
+        }
+        thead tr{
+            color: blue;
+        }
+        th{
+            height: 46px;
+            min-width: 142px;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
+        [class*=col-]{
+            padding: 0;
+            margin: 0;
+        }
+        .col-5 tr{
+            font-size: 18px;
+        }
+
+        p{
+            font-weight: bold;
+        }
+        .mauDo{
+            color: red;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            $("#txtMua").focus();
+
+            $("#btn_state").attr("disabled", true);
+            $("#btn_update").attr("disabled", true);
+
+           function kiemTraSo(gt, loi) {
+                let kiemTra = /^\d+$/;
+                
+                if (kiemTra.test(gt)) {
+                    $(loi).html("*");
+                    $(loi).removeClass("mauDo");
+                    return true;
+                } else {
+                    $(loi).html("Phải là số!");
+                    $(loi).addClass("mauDo");
+                    return false;
+                }
+            }
+
+            
+            $("#txtMua").blur(function (e) { 
+                let gt = $("#txtMua").val();
+                if(kiemTraSo(gt,"#tbMua")){
+                    $("#btn_state").attr("disabled", false);
+                }else{
+                    $("#btn_state").attr("disabled", true);
+                }
+            });
+
+            $("#txtBan").blur(function (e) { 
+                let gt = $("#txtBan").val();
+                if(kiemTraSo(gt,"#tbBan")){
+                    $("#btn_update").attr("disabled", false);
+                }else{
+                    $("#btn_update").attr("disabled", true);
+                }
+            });
+
+            $("#list").change(function (e) { 
+                let gt = $("#list").val();
+                let vt = gt.indexOf(";");
+                let src = gt.substring(0,vt);
+                let tien = gt.substring(vt+1,gt.length);
+                $("#img").attr("src", src);
+                $("#txtTien").html(tien);
+            });
+
+            $("#btn_update").click(function (e) { 
+                let gtMua = $("#txtMua").val();
+                let gtBan = $("#txtBan").val();
+                let chon = $("input[type='radio']:checked").val();
+                if(chon == 1){
+                    $("#muaVang").html(gtMua);
+                    $("#banVang").html(gtBan);
+                }else{
+                    $("#muaUSD").html(gtMua);
+                    $("#banUSD").html(gtBan);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header class="row">
+            <img src="../img/banner_car.jpg" alt="">            
+        </header>
+    
+        <section class="row">
+            <div class="col-3">
+                <form>
+                    <table class="table table-bordered" >
+                        <thead class="table-active text-center">
+                            <tr>
+                                <th colspan="2"> Bảng tin thị trường</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-active text-center">
+                                <th colspan="2">Vàng</th>
+                            </tr>
+                            <tr class="text-center">
+                                <th>Mua vào</th>
+                                <th>Bán ra</th>
+                            </tr>
+                            <tr class=" text-center">
+                                <th id="muaVang"></th>
+                                <th id="banVang"></th>
+                            </tr>
+                            <tr class="table-active text-center">
+                                <th colspan="2">USD</th>
+                            </tr>
+                            <tr class="text-center">
+                                <th>Mua vào</th>
+                                <th>Bán ra</th>
+                            </tr>
+                            <tr class="text-center">
+                                <th id="muaUSD"></th>
+                                <th id="banUSD"></th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div class="col-5">
+                <form>
+                    <table  class="table table-bordered table-active" style="height: 20px;">
+                        <thead class=" text-center" style="color: blue;">
+                            <tr>
+                                <th colspan="2">Cập nhật giá cả thị trường</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-dark">
+                            <tr>
+                                <td>Mua vào</td>
+                                <td>
+                                    <input type="text" id="txtMua">
+                                    <span id="tbMua">*</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Bán ra</td>
+                                <td>
+                                    <input type="text" id="txtBan">
+                                    <span id="tbBan">*</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Loại xe</td>
+                                <td>
+                                    <select class="custom-select w-75 h-25" name="select" id="list">
+                                        <option value="../img/car1.jpg;35000">Toyota</option>
+                                        <option value="../img/car2.jpg;15000">KIA</option>
+                                        <option value="../img/car3.jpg;40000">Ford</option>
+                                        <option value="../img/car4.jpg;32000">Civic</option>
+                                        <option value="../img/car5.jpg;50000">Ferrari</option>
+                                        <option value="../img/car7.jpg;45000">Mesedes</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input name="giatri" type="radio" value="1">
+                                    <label for="vang">Vàng</label>
+                                    <input name="giatri" type="radio" value="0">
+                                    <label for="USD">USD</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button class="btn btn-outline-dark" type="button" id="btn_update">Update</button>
+                                    <button class="btn btn-outline-dark" type="button" id="btn_state">State</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div class="col-4">
+                <form>
+                    <table class="table table-bordered">
+                        <thead class="table-active text-center" style="color: blue;">
+                            <tr>
+                                <th>Bảng báo giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-primary">
+                                    <p>-với kiểu thể thao, sang trong</p>
+                                    <p>-nổi bật, ít tối nhiên liệu</p> 
+                                    <p>-kiểu dáng thể thao</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table-active text-center">
+                                    <div class="mx-auto" style="width: 280px;height: 200px;">
+                                        <img src="../img/car1.jpg" alt="hinh" id="img">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="color: green;font-weight: 600;">Giá: <span id="txtTien">35000</span> USD</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </section>
+    </div>
+</body>
+</html

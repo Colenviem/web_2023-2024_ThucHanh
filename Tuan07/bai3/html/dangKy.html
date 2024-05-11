@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <style>
+        .container{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        h1{
+            font-size: 24px;
+            font-weight: 400;
+        }
+        tr{
+            border: 2px solid forestgreen;
+            color: rgba(141,143,205,255);
+        }
+        form{
+            width: 1000px;
+            min-height: 640px;
+            padding: 20px;
+            background-color: #ecfdea;
+            color: rgba(141,143,205,255);
+        }
+        tr > td:nth-child(1){
+            border-right: 2px solid forestgreen;
+            width: 240px;
+            text-align: right;
+        }
+        input{
+            width: 440px;
+            height: 30px;
+        }
+        input[type="number"]{
+            width: 100px;
+            padding: 4px;
+            border-radius: 6px;
+        }
+        select{
+            width: 120px;
+            padding: 4px;
+            border-radius: 6px;
+        }
+        button{
+            width: 80px;
+            padding: 4px;
+            border-radius: 6px;
+            font-size: 16px;
+            margin-right: 14px;
+        }
+        .mauDo{
+            color: red;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#txtHT").focus();
+
+            function kiemTraHoTen(gt,loi){
+                let kiemTra = /^([A-Z][a-z]*\s)+([A-Z][a-z]*)$/;
+                if(!kiemTra.test(gt)){
+                    $(loi).html("Họ tên phải viết hoa chữ cái đầu");
+                    $(loi).addClass("mauDo");
+                    return false;
+                }else{
+                    $(loi).html("*");
+                    $(loi).removeClass("mauDo");
+                    return true;
+                }
+            }
+
+            $("#txtHT").blur(function (e) { 
+                let gt = $("#txtHT").val();
+                kiemTraHoTen(gt,"#tbHT");
+            });
+
+            function kiemTraTenDangNhap(gt,loi){
+                let kiemTra = /^\w{6,}$/;
+                if(!kiemTra.test(gt)){
+                    $(loi).html("Tên đăng nhập ít nhất 6 ký tự");
+                    $(loi).addClass("mauDo");
+                    return false;
+                }else{
+                    $(loi).html("*");
+                    $(loi).removeClass("mauDo");
+                    return true;
+                }
+            }
+
+            $("#txtTenDN").blur(function (e) { 
+                let gt = $("#txtTenDN").val();
+                kiemTraTenDangNhap(gt,"#tbTenDN");
+            });
+
+            function kiemTraMatKhau(gt,loi){
+                let kiemTra = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*()]).{8,}$/;
+                if(!kiemTra.test(gt)){
+                    $(loi).html("Mật khẩu từ 8 ký tự trở lên, ít nhất 1 ký tự só, 1 ký tự viết hoa, 1 ký tự đặt biệt");
+                    $(loi).addClass("mauDo");
+                    return false;
+                }else{
+                    $(loi).html("*");
+                    $(loi).removeClass("mauDo");
+                    return true;
+                }
+            }
+
+            $("#txtPass").blur(function (e) { 
+                let gt = $("#txtPass").val();
+                kiemTraMatKhau(gt,"#tbPass");
+            });
+
+            $("#txtPass_2").blur(function (e) { 
+                let gt_2 = $("#txtPass_2").val();
+                kiemTraMatKhau(gt_2,"#tbPass_2");
+            });
+
+            function kiemTraSoDienThoai(gt,loi){
+                let kiemTra = /^0\d{9}$/;
+                if(!kiemTra.test(gt)){
+                    $(loi).html("Số điện thoại phải là số ,bắt đầu là số 0 và chỉ có 10 số");
+                    $(loi).addClass("mauDo");
+                    return false;
+                }else{
+                    $(loi).html("*");
+                    $(loi).removeClass("mauDo");
+                    return true;
+                }
+            }
+
+            $("#txtTel").blur(function (e) { 
+                let gt = $("#txtTel").val();
+                kiemTraSoDienThoai(gt,"#tbTel");
+            });
+
+            function kiemTraDiaChi(gt,loi){
+                let kiemTra = /^[A-Za-z0-9, ]+$/;
+                if(!kiemTra.test(gt)){
+                    $(loi).html("Không được để trống");
+                    $(loi).addClass("mauDo");
+                    return false;
+                }else{
+                    $(loi).html("*");
+                    $(loi).removeClass("mauDo");
+                    return true;
+                }
+            }
+
+            $("#txtDiaChi").blur(function (e) { 
+                let gt = $("#txtDiaChi").val();
+                kiemTraDiaChi(gt,"#tbDiaChi");
+            });
+
+            function kiemTraEmail(gt,loi){
+                let kiemTra = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+                if(!kiemTra.test(gt)){
+                    $(loi).html("Email phải nhập theo form kết thúc bằng @gmail.com");
+                    $(loi).addClass("mauDo");
+                    return false;
+                }else{
+                    $(loi).html("*");
+                    $(loi).removeClass("mauDo");
+                    return true;
+                }
+            }
+
+            $("#txtEmail").blur(function (e) { 
+                let gt = $("#txtEmail").val();
+                kiemTraEmail(gt,"#tbEmail");
+            });
+
+            $("#btn_dangKy").click(function (e) { 
+                e.preventDefault(); // Ngăn chặn hành động mặc định của button (submit form)
+
+                let hoTen = $("#txtHT").val();
+                let tenDangNhap = $("#txtTenDN").val();
+                let pass = $("#txtPass").val();
+                let pass_2 = $("#txtPass_2").val();
+                let ngay = $("#txtNgay").val();
+                let thang = $("#txtThang").val();
+                let nam = $("#txtNam").val();
+                let tel = $("#txtTel").val();
+                let diaChi = $("#txtDiaChi").val();
+                let email = $("#txtEmail").val();
+                let soThich = $("#txtSoThich").val();
+
+                let isValid = true; // Biến để đánh dấu xem tất cả các điều kiện kiểm tra đã được thỏa mãn hay không
+
+                // Kiểm tra từng điều kiện và thiết lập biến isValid
+                if (!kiemTraHoTen(hoTen, "#tbHT")) {
+                    isValid = false;
+                    $("#txtHT").focus();
+                }
+                if (!kiemTraTenDangNhap(tenDangNhap, "#tbTenDN")) {
+                    isValid = false;
+                    $("#txtTenDN").focus();
+                }
+                if (!kiemTraMatKhau(pass, "#tbPass")) {
+                    isValid = false;
+                    $("#txtPass").focus();
+                }
+                if (!kiemTraMatKhau(pass_2, "#tbPass_2")) {
+                    isValid = false;
+                    $("#txtPass_2").focus();
+                }
+                if (!kiemTraSoDienThoai(tel, "#tbTel")) {
+                    isValid = false;
+                    $("#txtTel").focus();
+                }
+                if (!kiemTraDiaChi(diaChi, "#tbDiaChi")) {
+                    isValid = false;
+                    $("#txtDiaChi").focus();
+                }
+                if (!kiemTraEmail(email, "#tbEmail")) {
+                    isValid = false;
+                    $("#txtEmail").focus();
+                }
+
+                // Kiểm tra isValid trước khi mở cửa sổ mới
+                if (isValid) {
+                    localStorage.setItem("hoTen", hoTen);
+                    localStorage.setItem("tenDangNhap", tenDangNhap);
+                    localStorage.setItem("pass", pass);
+                    localStorage.setItem("pass_2", pass_2);
+                    localStorage.setItem("ngay", ngay);
+                    localStorage.setItem("thang", thang);
+                    localStorage.setItem("nam", nam);
+                    localStorage.setItem("tel", tel);
+                    localStorage.setItem("diaChi", diaChi);
+                    localStorage.setItem("email", email);
+                    localStorage.setItem("soThich", soThich);
+                    window.open("thongTin.html");
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <form>
+                <h1 class="text-center">Register Form</h1>
+                <table class="table text-primary">
+                    <tr>
+                        <td>Họ và tên (*) :</td>
+                        <td>
+                            <input type="text" id="txtHT">
+                            <span id="tbHT">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tên Đăng Nhập (*) :</td>
+                        <td>
+                            <input type="text" id="txtTenDN">
+                            <span id="tbTenDN">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mật khẩu (*) :</td>
+                        <td>
+                            <input type="password" id="txtPass">
+                            <span id="tbPass">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Xác nhận mật khẩu (*) :</td>
+                        <td>
+                            <input type="password" id="txtPass_2">
+                            <span id="tbPass_2">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ngày sinh:</td>
+                        <td>
+                            <input type="number" id="txtNgay">
+                            <span>tháng:</span>
+                            <input type="number" id="txtThang">
+                            <span>năm:</span>
+                            <input type="number" id="txtNam">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Điện thoại:</td>
+                        <td>
+                            <input type="tel" id="txtTel"> 
+                            <span id="tbTel">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ:</td>
+                        <td>
+                            <input type="text" id="txtDiaChi">
+                            <span id="tbDiaChi">*</span>  
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Email khác:</td>
+                        <td>
+                            <input type="email" id="txtEmail">
+                            <span id="tbEmail">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sở thích:</td>
+                        <td>
+                            <select name="sothich" id="txtSoThich">
+                                <option value="Ca nhạc">Ca Nhạc</option>
+                                <option value="Nhảy">Nhảy </option>
+                                <option value="Bơi lội">Bơi lội</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="button" id="btn_dangKy">Đăng ký</button>
+                            <button type="button">Hủy</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

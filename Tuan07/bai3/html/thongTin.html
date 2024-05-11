@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <style>
+        .container{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        h1{
+            font-size: 24px;
+            font-weight: 400;
+        }
+        tr{
+            border: 2px solid forestgreen;
+            color: rgba(141,143,205,255);
+        }
+        form{
+            width: 1000px;
+            min-height: 400px;
+            padding: 20px;
+            background-color: #ecfdea;
+            color: rgba(141,143,205,255);
+        }
+        tr > td:nth-child(1){
+            border-right: 2px solid forestgreen;
+            width: 240px;
+            text-align: right;
+        }
+        input{
+            width: 440px;
+            height: 30px;
+        }   
+        select{
+            width: 120px;
+            padding: 4px;
+            border-radius: 6px;
+        }
+        button{
+            width: 80px;
+            padding: 4px;
+            border-radius: 6px;
+            font-size: 16px;
+            margin-right: 14px;
+        }
+        #txtNgay,
+        #txtThang,
+        #txtNam{
+            width: 100px;
+            padding: 4px;
+            border-radius: 6px;
+        }
+        #txtSoThich{
+            width: 120px;
+            padding: 4px;
+            border-radius: 6px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#txtHT").val(localStorage.getItem("hoTen"));
+            $("#txtTenDN").val(localStorage.getItem("tenDangNhap"));
+            $("#txtPass").val(localStorage.getItem("pass"));
+            $("#txtPass_2").val(localStorage.getItem("pass_2"));
+            $("#txtNgay").val(localStorage.getItem("ngay"));
+            $("#txtThang").val(localStorage.getItem("thang"));
+            $("#txtNam").val(localStorage.getItem("nam"));
+            $("#txtTel").val(localStorage.getItem("tel"));
+            $("#txtDiaChi").val(localStorage.getItem("diaChi"));
+            $("#txtEmail").val(localStorage.getItem("email"));
+            $("#txtSoThich").val(localStorage.getItem("soThich"));
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <form>
+                <h1 class="text-center">Information</h1>
+                <table class="table text-primary">
+                    <tr>
+                        <td>Họ và tên (*) :</td>
+                        <td>
+                            <input type="text" id="txtHT">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tên Đăng Nhập (*) :</td>
+                        <td>
+                            <input type="text" id="txtTenDN">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mật khẩu (*) :</td>
+                        <td>
+                            <input type="password" id="txtPass">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Xác nhận mật khẩu (*) :</td>
+                        <td>
+                            <input type="password" id="txtPass_2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ngày sinh:</td>
+                        <td>
+                            <input type="text" id="txtNgay">
+                            <span>tháng:</span>
+                            <input type="text" id="txtThang">
+                            <span>năm:</span>
+                            <input type="text" id="txtNam">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Điện thoại:</td>
+                        <td>
+                            <input type="tel" id="txtTel">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ:</td>
+                        <td>
+                            <input type="text" id="txtDiaChi">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Email khác:</td>
+                        <td>
+                            <input type="email" id="txtEmail">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sở thích:</td>
+                        <td>
+                            <input type="text" id="txtSoThich">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
